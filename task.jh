@@ -1,0 +1,50 @@
+enum TaskStatus{
+NEW,READY,RUNNING,DONE,FAILED
+}
+entity Task{
+	id Long,
+	type String,
+    group String,
+    name String,
+    created Date,
+    started Date,
+    done Date,
+    error String,
+    host String,
+    app String,
+    handler String,
+    file FileInfo
+}
+
+entity TaskParameter{
+	id Long,
+    name Stirng,
+    value String
+}
+
+relationship OneToMany{
+	Task{parameters} to TaskParameter
+}
+
+relationship OneToOne{
+	Task{file} to FileInfo
+}
+
+entity FileInfo{
+	id Long, 
+    filename String,
+    url String,
+    length Long,
+    lastModified Date,
+    group String,
+    owner String
+}
+
+entity TaskHandler{
+	id Long,
+    handler String,
+    app String,
+    host String
+}
+
+
